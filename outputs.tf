@@ -40,11 +40,11 @@ output "lightsail_container_services_private_domain_name" {
 }
 output "lightsail_container_services_private_registry_access" {
   description = "Map of private_registry_access values across all lightsail_container_services, keyed the same as var.lightsail_container_services"
-  value       = { for k, v in aws_lightsail_container_service.lightsail_container_services : k => v.private_registry_access if v.private_registry_access != null && length(v.private_registry_access) > 0 }
+  value       = { for k, v in aws_lightsail_container_service.lightsail_container_services : k => one(v.private_registry_access) if v.private_registry_access != null && length(v.private_registry_access) > 0 }
 }
 output "lightsail_container_services_public_domain_names" {
   description = "Map of public_domain_names values across all lightsail_container_services, keyed the same as var.lightsail_container_services"
-  value       = { for k, v in aws_lightsail_container_service.lightsail_container_services : k => v.public_domain_names if v.public_domain_names != null && length(v.public_domain_names) > 0 }
+  value       = { for k, v in aws_lightsail_container_service.lightsail_container_services : k => one(v.public_domain_names) if v.public_domain_names != null && length(v.public_domain_names) > 0 }
 }
 output "lightsail_container_services_region" {
   description = "Map of region values across all lightsail_container_services, keyed the same as var.lightsail_container_services"
